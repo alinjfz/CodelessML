@@ -1,0 +1,13 @@
+export const LOGIN_URL = "/login";
+export const REGISTER_URL = "/register";
+export const NOTFOUND_URL = "/404";
+export const RESET_PASS_URL = "/reset_password";
+export const CHANGE_PASS_URL = "/change_password";
+export const DASHBOARD_URL = "/";
+export const TRAIN_LIST_URL = "/train_list";
+export const NEW_MODEL_URL = "/new_model";
+export const FAQ_URL = "/how_it_works";
+export const PROFILE_URL = "/profile";
+export const LOGOUT_URL = "/logout";
+export const CONFIRM_RESET_PASS_URL = "/reset_password_confirm/:token?";
+export const LEARN_MORE_URL = "/logout";

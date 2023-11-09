@@ -1,0 +1,9 @@
+# dependencies and cache
+/__pycache__
+/.vscode
+/venv
+
+# testing
+
+# misc
+.DS_Store
