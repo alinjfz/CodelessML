@@ -1,0 +1,13 @@
+flask
+flask-sqlalchemy
+python-dotenv
+flask_login
+gunicorn
+flask_mail
+flask-cors
+tensorflow
+pandas
+scikit-learn
+itsdangerous
+py3DNS
+validate-email-address

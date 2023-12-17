@@ -1,0 +1,17 @@
+export const LOGIN_URL = "/login";
+export const REGISTER_URL = "/register";
+export const NOTFOUND_URL = "/404";
+export const RESET_PASS_URL = "/reset_password";
+export const CHANGE_PASS_URL = "/change_password";
+export const DASHBOARD_URL = "/";
+export const TRAIN_LIST_URL = "/train_list";
+export const NEW_MODEL_URL = "/new_model";
+export const FAQ_URL = "/how_it_works";
+export const PROFILE_URL = "/profile";
+export const LOGOUT_URL = "/logout";
+export const CONFIRM_RESET_PASS_URL = "/reset_password_confirm/:token?";
+//export const LEARN_MORE_URL = "/logout";
+export const VERIFY_EMAIL_URL = "/verify_email/:token?";
+export const TEST_URL = "/test";
+export const BLOG_URL = "/blog/:blog_url";
+export const BLOG_URL_PREFIX = "/blog/";
