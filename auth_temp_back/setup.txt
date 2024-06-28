@@ -1,0 +1,14 @@
+(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/ali/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+mailcatcher
+sudo lsof -nP -iTCP:1025 -sTCP:LISTEN
+sudo kill 40265
+lsof -i tcp:1025
+kill -9 $(lsof -ti:1025)
+
+mailcatcher --foreground
+
+flask db init
+flask db migrate -m ‘some message’
+flask db upgrade
