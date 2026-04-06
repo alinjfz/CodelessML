@@ -1,0 +1,19 @@
+# dependencies and cache
+__pycache__/
+.vscode/
+venv/
+
+# environment / secrets
+.env
+
+# uploaded files and trained models
+uploads/
+trained_models/
+
+# database
+*.sqlite
+*.db
+
+# misc
+.DS_Store
+*.log

@@ -1,0 +1,30 @@
+# ── Python ──────────────────────────────────────────
+backend/venv/
+backend/__pycache__/
+backend/**/__pycache__/
+backend/**/*.pyc
+backend/.env
+
+# ── User data (never commit uploads or trained models)
+backend/uploads/
+backend/trained_models/
+
+# ── Internal dev notes
+backend/setup.txt
+backend/todo.txt
+backend/migrations/
+
+# ── Database files
+backend/**/*.sqlite
+backend/**/*.db
+
+# ── Node ─────────────────────────────────────────────
+frontend/node_modules/
+frontend/build/
+
+# ── OS / editor ──────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/

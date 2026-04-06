@@ -1,0 +1,70 @@
+{
+  "column_names": [
+    "pregnancies",
+    "glucose",
+    "diastolic",
+    "triceps",
+    "insulin",
+    "bmi",
+    "dpf",
+    "age",
+    "diabetes"
+  ],
+  "sample_rows": [
+    {
+      "age": 50,
+      "bmi": 33.6,
+      "diabetes": 1,
+      "diastolic": 72,
+      "dpf": 0.627,
+      "glucose": 148,
+      "insulin": 0,
+      "pregnancies": 6,
+      "triceps": 35
+    },
+    {
+      "age": 31,
+      "bmi": 26.6,
+      "diabetes": 0,
+      "diastolic": 66,
+      "dpf": 0.351,
+      "glucose": 85,
+      "insulin": 0,
+      "pregnancies": 1,
+      "triceps": 29
+    },
+    {
+      "age": 32,
+      "bmi": 23.3,
+      "diabetes": 1,
+      "diastolic": 64,
+      "dpf": 0.672,
+      "glucose": 183,
+      "insulin": 0,
+      "pregnancies": 8,
+      "triceps": 0
+    },
+    {
+      "age": 21,
+      "bmi": 28.1,
+      "diabetes": 0,
+      "diastolic": 66,
+      "dpf": 0.1669999999999999,
+      "glucose": 89,
+      "insulin": 94,
+      "pregnancies": 1,
+      "triceps": 23
+    },
+    {
+      "age": 33,
+      "bmi": 43.1,
+      "diabetes": 1,
+      "diastolic": 40,
+      "dpf": 2.2880000000000003,
+      "glucose": 137,
+      "insulin": 168,
+      "pregnancies": 0,
+      "triceps": 35
+    }
+  ]
+}
