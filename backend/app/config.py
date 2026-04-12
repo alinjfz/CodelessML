@@ -10,12 +10,10 @@ class Config:
     # SQLALCHEMY_DATABASE_URI = 'sqlite:///mlsud.db'
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'modelforge.sqlite')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_ECHO = True
+    SQLALCHEMY_ECHO = False
     SESSION_COOKIE_SAMESITE = 'None'
     SESSION_COOKIE_SECURE = True
-    # SESSION_COOKIE_HTTPONLY = False
-    # STATIC_URL_PATH='http://localhost:3000/'
-    FRONT_URL = 'http://localhost:3000/'
+    FRONT_URL = os.environ.get('FRONTEND_URL', 'http://localhost:3000/')
     MAIL_DEFAULT_SENDER = os.environ.get('MAIL_USERNAME')
     MAIL_SERVER = os.environ.get('MAIL_SERVER', '127.0.0.1')
     MAIL_PORT = int(os.environ.get('MAIL_PORT', 1025))
@@ -23,6 +21,7 @@ class Config:
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD', '')
     MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS', 'False') == 'True'
     MAIL_USE_SSL = os.environ.get('MAIL_USE_SSL', 'False') == 'True'
+    MAIL_ENABLED = os.environ.get('MAIL_ENABLED', 'False') == 'True'
     # Upload
     UPLOAD_FOLDER = 'uploads/'
     TRAIN_FOLDER = 'trained_models/'

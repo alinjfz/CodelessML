@@ -17,8 +17,12 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
-migrate = Migrate(app,db)
-logging.getLogger('flask_cors').level = logging.DEBUG
+migrate = Migrate(app, db)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s %(levelname)s %(name)s: %(message)s'
+)
+logging.getLogger('flask_cors').setLevel(logging.WARNING)
 #########################
 ##### CONFIG MAIL #######
 #########################
@@ -75,62 +79,3 @@ app.register_blueprint(predict, url_prefix="/api/predict")
 from app.downloader.views import downloader
 app.register_blueprint(downloader, url_prefix="/download")
 
-
-'''
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-from flask_login import LoginManager
-from flask_cors import CORS
-from flask_mail import Mail
-import logging
-from itsdangerous import URLSafeTimedSerializer
-from app.config import Config
-
-db = SQLAlchemy()
-migrate = Migrate()
-login_manager = LoginManager()
-mail = Mail()
-
-def create_app(config_class=Config):
-    app = Flask(__name__)
-    app.config.from_object(config_class)
-    
-    # Initialize extensions
-    db.init_app(app)
-    migrate.init_app(app, db)
-    login_manager.init_app(app)
-    CORS(app, support_credentials=True)
-    mail.init_app(app)
-
-    # Create database tables
-    with app.app_context():
-        db.create_all()
-
-    # Configure logging
-    logging.getLogger('flask_cors').level = logging.DEBUG
-
-    # Register blueprints
-    from app.auth.views import auth
-    app.register_blueprint(auth, url_prefix="/api/auth")
-
-    from app.test_api.views import test
-    app.register_blueprint(test, url_prefix="/api/test")
-
-    from app.train.views import train
-    app.register_blueprint(train, url_prefix="/api/train")
-
-    from app.algorithm.views import algorithm
-    app.register_blueprint(algorithm, url_prefix="/api/algorithm")
-
-    from app.suggest.views import suggest
-    app.register_blueprint(suggest, url_prefix="/api/suggest")
-
-    from app.uploader.views import uploader
-    app.register_blueprint(uploader, url_prefix="/api/uploader")
-
-    # Set up URLSafeTimedSerializer
-    app.url_serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
-
-    return app
-'''

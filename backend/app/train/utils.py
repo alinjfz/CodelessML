@@ -6,7 +6,18 @@ from app.uploader.utils import check_file_is_available_return_path
 from app.models import FileStorage, db, Algorithm, TrainingHistory
 from datetime import datetime
 from joblib import dump, load
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 import os
+
+
+def compute_metrics(y_test, y_pred):
+    return {
+        'accuracy': round(float(accuracy_score(y_test, y_pred)), 4),
+        'precision': round(float(precision_score(y_test, y_pred, average='weighted', zero_division=0)), 4),
+        'recall': round(float(recall_score(y_test, y_pred, average='weighted', zero_division=0)), 4),
+        'f1': round(float(f1_score(y_test, y_pred, average='weighted', zero_division=0)), 4),
+        'confusion_matrix': confusion_matrix(y_test, y_pred).tolist(),
+    }
 
 def validate_train(file_name, target_column, feature_columns, test_size, random_state):
     # Validate inputs
@@ -58,10 +69,14 @@ def get_data_from_api(data):
     return False, {'error' : 'Missing required parameters'}
 
 def add_to_train_db(data, model):
-    print('data', data, model)
     try:
         features = json.dumps(data['feature_columns'])
-        trained_model = TrainingHistory(data['user_id'], data['dataset_id'], data['algo_id'], data['target_column'], features, data['accuracy'], None ,data['hyper_parameters'] , data['cost'])
+        trained_model = TrainingHistory(
+            data['user_id'], data['dataset_id'], data['algo_id'],
+            data['target_column'], features, data['accuracy'],
+            None, data['hyper_parameters'], data['cost'],
+            metrics=data.get('metrics')
+        )
         db.session.add(trained_model)
         db.session.commit()
         train_id = trained_model.get_id()

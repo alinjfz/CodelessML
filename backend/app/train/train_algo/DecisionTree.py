@@ -1,7 +1,6 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-from app.train.utils import validate_train
+from app.train.utils import validate_train, compute_metrics
 from sklearn.tree import DecisionTreeClassifier
 
 def train_decision_tree_model(file_name, target_column, feature_columns = None, test_size=0.2, random_state=42, hyper_parameters = None):
@@ -29,12 +28,8 @@ def train_decision_tree_model(file_name, target_column, feature_columns = None, 
             # Make predictions on the test set
             y_pred = dt_model.predict(X_test)
 
-            # Calculate accuracy
-            accuracy = accuracy_score(y_test, y_pred)
-
-            cost_value = None
-
-            return True, {'message': 'Decision Tree model trained successfully', 'accuracy': accuracy, 'cost': cost_value}, dt_model, features
+            metrics = compute_metrics(y_test, y_pred)
+            return True, {'message': 'Decision Tree model trained successfully', **metrics, 'cost': None}, dt_model, features
         except Exception as e:
             return False, {"error" : str(e)}
     return False, {'message' : message }

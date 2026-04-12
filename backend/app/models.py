@@ -1,6 +1,4 @@
 # models.py
-from email.policy import default
-from enum import unique
 from flask import json
 from flask_login import UserMixin, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -121,6 +119,7 @@ class TrainingHistory(db.Model,UserMixin):
     model_path = db.Column(db.String, nullable=True)
     hyper_parameters = db.Column(db.JSON, nullable=True)
     cost = db.Column(db.Float, nullable=True)
+    metrics = db.Column(db.JSON, nullable=True)
 
     def set_feature_columns(self, array_data):
         self.feature_columns = json.dumps(array_data)
@@ -146,8 +145,9 @@ class TrainingHistory(db.Model,UserMixin):
                 "model_path": self.model_path,
                 "hyper_parameters": self.hyper_parameters,
                 "cost": self.cost,
+                "metrics": self.metrics,
             }
-    def __init__(self, user_id, dataset_id, algo_id, target_column,feature_columns= None,  accuracy=None, model_path=None, hyper_parameters=None, cost=None):
+    def __init__(self, user_id, dataset_id, algo_id, target_column, feature_columns=None, accuracy=None, model_path=None, hyper_parameters=None, cost=None, metrics=None):
         self.user_id = user_id
         self.dataset_id = dataset_id
         self.algo_id = algo_id
@@ -157,6 +157,7 @@ class TrainingHistory(db.Model,UserMixin):
         self.model_path = model_path
         self.hyper_parameters = hyper_parameters
         self.cost = cost
+        self.metrics = metrics
     def get_id(self):
         return str(self.id)
 # Check
@@ -194,9 +195,3 @@ class Suggestion(db.Model,UserMixin):
         self.target_column = target_column
         self.hyper_parameters = hyper_parameters
 
-class Test_table(db.Model, UserMixin):
-    id = db.Column(db.String(128), primary_key=True, unique=True, default=get_uuid)
-    name = db.Column(db.String, nullable=True)
-    def __init__(self, name):
-        self.name = name
-    

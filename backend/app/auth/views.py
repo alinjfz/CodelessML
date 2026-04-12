@@ -1,4 +1,4 @@
-from flask import Flask, render_template,Blueprint
+from flask import Flask, render_template, Blueprint, current_app
 from flask import jsonify, request, url_for
 from flask_login import login_user, current_user, logout_user, login_required
 from app.models import User, db, load_user_by_email
@@ -87,10 +87,13 @@ def reset_password():
             reset_link = site_url + 'reset_password_confirm/' + token
             # reset_link = url_for(link_addup, token=token, _external=True)
             # reset_link = url_for("external_link", _external=True, _external_url=external_url)
-            html_content = render_template('reset_password_email.html', user=user.name, reset_link=reset_link)  
-            msg = Message(subject="Password Reset",sender='my_email@example.com', recipients=[user.email], html=html_content)
-            mail.send(msg)
-            return jsonify({'message': 'Password reset instructions sent via email'})
+            html_content = render_template('reset_password_email.html', user=user.name, reset_link=reset_link)
+            if current_app.config.get('MAIL_ENABLED'):
+                msg = Message(subject="Password Reset", sender=current_app.config['MAIL_DEFAULT_SENDER'], recipients=[user.email], html=html_content)
+                mail.send(msg)
+                return jsonify({'message': 'Password reset instructions sent via email'})
+            else:
+                return jsonify({'message': 'Email disabled', 'dev_reset_link': reset_link})
     return jsonify({'error': 'Invalid email'}), 400
 @auth.route('/reset_password_confirm', methods=['POST'])
 def reset_password_confirm():
@@ -145,10 +148,13 @@ def send_verification():
         current_user.verification_token = token
         db.session.commit()
         verification_link = site_url + 'verify_email/' + token
-        html_content = render_template('verify_email.html', user=name, verification_link=verification_link)  
-        msg = Message(subject="Email Verification",sender='my_email@example.com', recipients=[email], html=html_content)
-        mail.send(msg)
-        return jsonify({'message': 'Email verification instructions sent via email'}), 200
+        html_content = render_template('verify_email.html', user=name, verification_link=verification_link)
+        if current_app.config.get('MAIL_ENABLED'):
+            msg = Message(subject="Email Verification", sender=current_app.config['MAIL_DEFAULT_SENDER'], recipients=[email], html=html_content)
+            mail.send(msg)
+            return jsonify({'message': 'Email verification instructions sent via email'}), 200
+        else:
+            return jsonify({'message': 'Email disabled', 'dev_verification_link': verification_link}), 200
     return jsonify({'error': 'cannot complete your request'}), 500
 @auth.route('/verify_email', methods=['POST'])
 def verify_email():

@@ -1,8 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score
-from app.train.utils import validate_train
+from app.train.utils import validate_train, compute_metrics
 
 def train_knn_model(file_name, target_column, feature_columns = None, test_size=0.2, random_state=42, hyper_parameters = None):
     # Validate inputs
@@ -29,10 +28,8 @@ def train_knn_model(file_name, target_column, feature_columns = None, test_size=
             # Make predictions
             y_pred = knn_model.predict(X_test)
 
-            # Calculate accuracy
-            accuracy = accuracy_score(y_test, y_pred)
-
-            return True, {'message': 'KNN model trained successfully', 'accuracy': accuracy, 'cost': None}, knn_model, features
+            metrics = compute_metrics(y_test, y_pred)
+            return True, {'message': 'KNN model trained successfully', **metrics, 'cost': None}, knn_model, features
         except Exception as e:
             return False, {"error" : str(e)}, False, False
     return False, {'message' : message }, False, False

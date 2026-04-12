@@ -22,6 +22,17 @@
 
 ---
 
+## Research Background
+
+ModelForge was built as a research project. It is based on the paper:
+
+> **Machine Learning Simplified: A Web Application Approach to Democratize Predictive Analytics, Empowering Non-Programmers through User-Friendly Interfaces**
+> Ali Najafzadeh, October 2023
+
+Inspired by: Nasoz & Shrestha, *"A Web-Based User Interface for Machine Learning Analysis"*, HIMI 2017, LNCS 10274.
+
+---
+
 ## Tech Stack
 
 | Layer | Technology |
@@ -89,6 +100,22 @@ cd frontend
 npm install
 npm start                       # starts on http://localhost:3000
 ```
+
+---
+
+## Development History
+
+This project went through 6 iterations before reaching this final version. Each version is preserved as a git branch:
+
+| Branch | What it is |
+|--------|-----------|
+| `history/v0-mlui-early-prototype` | First attempt — basic auth scaffold + algorithm list model |
+| `history/v1-csv-editor-prototype` | CSV file editor, first exploration of pandas + Flask |
+| `history/v2-auth-system-fullstack` | Production auth template (email verify, password reset, React+Redux) |
+| `history/v3-ml-backend-scikit` | First real ML — all 4 algorithms with scikit-learn |
+| `history/v4-visualml-nextui-experiment` | Frontend experiment with NextUI + Tailwind CSS |
+| `history/v5-integration-testing` | Single-file integration test of the full auth+upload+train flow |
+| `main` | This branch — final polished version |
 
 ---
 

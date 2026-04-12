@@ -35,7 +35,7 @@ def suggest_algorithm_endpoint():
     target_column = data.get('target_column')
     status, all_algorithms, suggested_algorithm = suggest_algorithm(current_user.id, dataset_id, feature_columns, target_column)
     if (not status):
-        return suggest_algorithm, 400
+        return jsonify({'error': suggested_algorithm}), 400
     if suggested_algorithm:
         return jsonify({'suggested_algorithm': suggested_algorithm, "algo_list": all_algorithms}), 200
     else:

@@ -1,8 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
-from sklearn.metrics import accuracy_score
-from app.train.utils import validate_train
+from app.train.utils import validate_train, compute_metrics
 
 def train_svm_model(file_name, target_column, feature_columns = None, test_size=0.2, random_state=42, hyper_parameters = None):
     # Validate inputs
@@ -28,16 +27,13 @@ def train_svm_model(file_name, target_column, feature_columns = None, test_size=
             # Make predictions
             y_pred = svm_model.predict(X_test)
 
-            # Calculate accuracy
-            accuracy = accuracy_score(y_test, y_pred)
-
+            metrics = compute_metrics(y_test, y_pred)
             # Use decision_function to get signed distances
             decision_values = svm_model.decision_function(X_test)
-            # Calculate a cost-like value based on the decision values
             cost_value = None
             if len(decision_values) > 0:
-                cost_value =  abs(sum(decision_values) / len(decision_values))
-            return True, {'message': 'SVM model trained successfully', 'accuracy': accuracy, 'cost': cost_value}, svm_model, features
+                cost_value = abs(sum(decision_values) / len(decision_values))
+            return True, {'message': 'SVM model trained successfully', **metrics, 'cost': cost_value}, svm_model, features
         except Exception as e:
-            return False, {"error" : str(e)}
-    return False, {'message' : message }
+            return False, {"error": str(e)}, None, None
+    return False, {'message': message}, None, None

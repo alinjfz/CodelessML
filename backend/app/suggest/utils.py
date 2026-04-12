@@ -303,10 +303,10 @@ def suggest_algorithm(user_id, dataset_id, feature_columns, target_column):
     suggest_list = suggest_based_on_scores(suggest_score)
     # Suggest based on prev trains
     trained_suggest = suggest_based_on_prev_train(
-        user_id, dataset_id, feature_columns, target_column)
+        dataset_id, user_id, feature_columns, target_column)
     # Suggest based on prev suggests
     suggested_suggest = suggest_based_on_prev_suggest(
-        user_id, dataset_id, feature_columns, target_column)
+        dataset_id, user_id, feature_columns, target_column)
 
     info = {
         "char":{
@@ -317,7 +317,6 @@ def suggest_algorithm(user_id, dataset_id, feature_columns, target_column):
         "trained": trained_suggest,
         "prev_suggest": suggested_suggest,
     }
-    print("THEINFO", info)
     return True, serialized_algorithms_list(), info
 
 '''
