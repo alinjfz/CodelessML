@@ -117,7 +117,7 @@ The user interface applies Shneiderman's **Eight Golden Rules of Interface Desig
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/<your-username>/CodelessML.git
+git clone https://github.com/alinjfz/CodelessML.git
 cd CodelessML
 ```
 
