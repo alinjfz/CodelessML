@@ -9,6 +9,12 @@ backend/.env
 backend/uploads/
 backend/trained_models/
 
+# ── Sample datasets (license unverified — keep locally, don't push)
+sample_datasets/
+*.pdf
+*.docx
+Plan.md
+
 # ── Internal dev notes
 backend/setup.txt
 backend/todo.txt
