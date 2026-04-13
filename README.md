@@ -107,15 +107,15 @@ npm start                       # starts on http://localhost:3000
 
 This project went through 6 iterations before reaching this final version. Each version is preserved as a git branch:
 
-| Branch | What it is |
-|--------|-----------|
-| `history/v0-mlui-early-prototype` | First attempt — basic auth scaffold + algorithm list model |
-| `history/v1-csv-editor-prototype` | CSV file editor, first exploration of pandas + Flask |
-| `history/v2-auth-system-fullstack` | Production auth template (email verify, password reset, React+Redux) |
-| `history/v3-ml-backend-scikit` | First real ML — all 4 algorithms with scikit-learn |
-| `history/v4-visualml-nextui-experiment` | Frontend experiment with NextUI + Tailwind CSS |
-| `history/v5-integration-testing` | Single-file integration test of the full auth+upload+train flow |
-| `main` | This branch — final polished version |
+| Branch | Date | What it is |
+|--------|------|-----------|
+| `history/v1-visualml-nextui-experiment` | Oct 2023 | Frontend experiment with NextUI + Tailwind CSS |
+| `history/v2-mlui-early-prototype` | Nov 2023 | First ML platform attempt — auth scaffold + algorithm list |
+| `history/v3-ml-backend-scikit` | Dec 2023 | First real ML — all 4 algorithms with scikit-learn |
+| `history/v4-auth-system-fullstack` | Jun 2024 | Production auth template (email verify, password reset, React+Redux) |
+| `history/v5-csv-editor-prototype` | Apr 2025 | CSV file editor, first exploration of pandas + Flask |
+| `history/v6-integration-testing` | Feb 2026 | Single-file integration test of the full auth+upload+train flow |
+| `main` | Apr 2026 | This branch — final polished version |
 
 ---
 
