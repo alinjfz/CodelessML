@@ -1,6 +1,6 @@
-# ModelForge — Frontend
+# CodelessML — Frontend
 
-React single-page application for the ModelForge ML training platform.
+React single-page application for the CodelessML ML training platform.
 
 ---
 

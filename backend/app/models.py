@@ -8,13 +8,12 @@ from datetime import datetime
 
 @login_manager.user_loader
 def load_user(user_id):
-    # return User.query.get(user_id)
     return User.query.filter_by(id=user_id).first()
 def load_user_by_email(email):
     return User.query.filter_by(email=email).first()
 def get_uuid():
     return uuid4().hex
-# Done
+
 class User(db.Model,UserMixin):
     __tablename__ = "users"
     id = db.Column(db.String(128), primary_key=True, unique=True, default=get_uuid)
@@ -40,7 +39,7 @@ class User(db.Model,UserMixin):
         self.password = generate_password_hash(password)
     def check_password(self, password):
         return check_password_hash(self.password, password)
-# Done
+
 class Algorithm(db.Model,UserMixin):
     __tablename__ = "algorithms"
     id = db.Column(db.String(128), primary_key=True, unique=True, default=get_uuid)
@@ -69,7 +68,7 @@ class Algorithm(db.Model,UserMixin):
         self.icon = icon        
     def get_id(self):
         return str(self.id)
-# Done
+
 class FileStorage(db.Model,UserMixin):
     __tablename__ = "datasets"
     id = db.Column(db.String(128), primary_key=True, unique=True, default=get_uuid)
@@ -104,7 +103,7 @@ class FileStorage(db.Model,UserMixin):
         return self.id + '_' + self.filename
     def get_file_dir_and_name(self):
         return self.get_file_dir() + self.get_filename()
-# Check
+
 class TrainingHistory(db.Model,UserMixin):
     __tablename__ = "trains"
     id = db.Column(db.String(128), primary_key=True, unique=True, default=get_uuid)
@@ -112,7 +111,6 @@ class TrainingHistory(db.Model,UserMixin):
     dataset_id = db.Column(db.Integer, db.ForeignKey('datasets.id'), unique=False, nullable=False)
     algo_id = db.Column(db.Integer, db.ForeignKey('algorithms.id'), unique=False, nullable=False)
     training_date = db.Column(db.DateTime, nullable=False,default=datetime.utcnow)
-    # feature_columns = db.Column(db.ARRAY(db.String), nullable=True)
     feature_columns = db.Column(db.String, nullable=True)
     target_column = db.Column(db.String, nullable=False)
     accuracy = db.Column(db.Float, nullable=True)
@@ -160,14 +158,13 @@ class TrainingHistory(db.Model,UserMixin):
         self.metrics = metrics
     def get_id(self):
         return str(self.id)
-# Check
+
 class Suggestion(db.Model,UserMixin):
     __tablename__ = 'suggestions'
     id = db.Column(db.String(128), primary_key=True, unique=True, default=get_uuid)
     user_id = db.Column(db.String(128), db.ForeignKey('users.id'), unique=False, nullable=False)
     dataset_id = db.Column(db.String(128), db.ForeignKey('datasets.id'), unique=False, nullable=False)
     suggested_algo_id = db.Column(db.String(128), db.ForeignKey('algorithms.id'), unique=False, nullable=False)
-    # feature_columns = db.Column(db.ARRAY(db.String), nullable=False)
     feature_columns = db.Column(db.String, nullable=True)
     target_column = db.Column(db.String, nullable=False)
     hyper_parameters = db.Column(db.JSON, nullable=True)
@@ -191,7 +188,6 @@ class Suggestion(db.Model,UserMixin):
         self.dataset_id = dataset_id
         self.suggested_algo_id = suggested_algo_id
         self.set_feature_columns(feature_columns)
-        # self.feature_columns = feature_columns
         self.target_column = target_column
         self.hyper_parameters = hyper_parameters
 

@@ -79,10 +79,10 @@ def are_feature_columns_unique(dataset, feature_columns, uniqueness_threshold=0.
             continue
 
         # Calculate the proportion of unique values in the feature column
-        unique_ratio = dataset[column].nunique() / dataset.shape[0]
+        col_unique_ratio = dataset[column].nunique() / dataset.shape[0]
 
         # Check if the feature is considered unique based on the threshold
-        if unique_ratio <= uniqueness_threshold:
+        if col_unique_ratio <= uniqueness_threshold:
             unique_features.append(column)
     are_unique = len(unique_features) / len(feature_columns) < unique_ratio
     if (are_unique):
@@ -318,7 +318,3 @@ def suggest_algorithm(user_id, dataset_id, feature_columns, target_column):
         "prev_suggest": suggested_suggest,
     }
     return True, serialized_algorithms_list(), info
-
-'''
-item = {'char': {'suggest_list': [<Algorithm 84fcccf7bf1345ab85abebf80152f224>, <Algorithm 2c6ca7443d8b488ab017d2888d94f708>], 'suggest_score': {'KNN': 5, 'SVM': 5, 'DT': 1, 'RF': 1}, 'reasons': {'large': False, 'missing': False, 'imbalance': False, '20<=dim<=50': 30, 'target_column_unique': True, 'feature column': ['radius_mean', 'texture_mean', 'perimeter_mean', 'area_mean', 'smoothness_mean', 'compactness_mean', 'concavity_mean', 'symmetry_mean', 'fractal_dimension_mean', 'radius_se', 'texture_se', 'perimeter_se', 'area_se', 'concavity_se', 'concave points_se', 'symmetry_se', 'radius_worst', 'texture_worst', 'perimeter_worst', 'smoothness_worst', 'compactness_worst', 'concavity_worst', 'concave points_worst', 'symmetry_worst', 'fractal_dimension_worst'], 'corr high': False, 'non linear relation': False}}, 'trained': {'highest_accuracy': '', 'closest_highest': ''}, 'prev_suggest': False}
-'''

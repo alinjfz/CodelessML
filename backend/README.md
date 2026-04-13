@@ -1,6 +1,6 @@
-# ModelForge — Backend
+# CodelessML — Backend
 
-Flask REST API powering the ModelForge ML training platform.
+Flask REST API powering the CodelessML ML training platform.
 
 ---
 
@@ -30,7 +30,7 @@ Edit `.env` with your values:
 | Variable | Description |
 |----------|-------------|
 | `SECRET_KEY` | Flask secret key (use a long random string) |
-| `DATABASE_URL` | SQLite path, e.g. `sqlite:///modelforge.db` |
+| `DATABASE_URL` | SQLite path, e.g. `sqlite:///codelessml.db` |
 | `VERIFICATION_SALT` | Salt for email verification tokens |
 | `RESET_PASSWORD_SALT` | Salt for password reset tokens |
 | `MAIL_SERVER` | SMTP server hostname |

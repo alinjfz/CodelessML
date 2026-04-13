@@ -7,21 +7,6 @@ from flask_mail import Message
 import re
 
 
-'''
-            API               | Complete |          NOTES
--------------------------------------------------------------------
-Auth:                         |          |
-    register                  |   done   |      send email verification 
-    login                     |   done   |
-    logout                    |   done   |
-    reset_password            |   done   |      
-    reset-password-confirm    |   done   |      
-    change_password           |   done   |
-    profile                   |   done   |
-    send email verification   |   done   |      
-    verify email              |   done   |      
-'''
-
 auth = Blueprint('auth',__name__)
 
 @auth.route('/register', methods=['POST'])

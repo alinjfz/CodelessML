@@ -1,31 +1,56 @@
-'''
+import pytest
 
-import unittest
-from app import app, db
 
-class AuthAPITestCase(unittest.TestCase):
-    # def setUp(self):
-    #     self.client = self.app.test_client()
-    # def tearDown(self):
-    #     with self.app.app_context():
-    #         db.drop_all()
+def test_register_success(client):
+    res = client.post('/api/auth/register', json={
+        'email': 'new@example.com', 'name': 'Ali', 'password': 'Pass123!'
+    })
+    assert res.status_code == 201
+    data = res.get_json()
+    assert data['user']['email'] == 'new@example.com'
 
-    def test_register(self):
-        # Write your test for the /register API
-        # response = self.client.post('/register', json={'username': 'testuser', 'password': 'testpassword'})
-        # self.assertEqual(response.status_code, 200)
-        # Add more assertions based on your API behavior
-        self.assertEqual(100 + 100, 200)
 
-    def test_login(self):
-        # Write your test for the /login API
-        # response = self.client.post('/login', json={'username': 'testuser', 'password': 'testpassword'})
-        # self.assertEqual(response.status_code, 200)
-        # Add more assertions based on your API behavior
-        # return True
-        self.assertEqual(100 + 100, 200)
-        # Repeat the process for other API tests
+def test_register_duplicate_email(client):
+    payload = {'email': 'dup@example.com', 'name': 'Ali', 'password': 'Pass123!'}
+    client.post('/api/auth/register', json=payload)
+    res = client.post('/api/auth/register', json=payload)
+    assert res.status_code == 409
 
-if __name__ == '__main__':
-    unittest.main()
-'''
+
+def test_register_invalid_email(client):
+    res = client.post('/api/auth/register', json={
+        'email': 'notanemail', 'name': 'Ali', 'password': 'Pass123!'
+    })
+    assert res.status_code == 400
+
+
+def test_login_success(client, registered_user):
+    res = client.post('/api/auth/login', json=registered_user)
+    assert res.status_code == 200
+    assert res.get_json()['user']['email'] == registered_user['email']
+
+
+def test_login_wrong_password(client, registered_user):
+    res = client.post('/api/auth/login', json={
+        'email': registered_user['email'], 'password': 'wrongpassword'
+    })
+    assert res.status_code == 401
+
+
+def test_logout_requires_login(client):
+    res = client.get('/api/auth/logout')
+    assert res.status_code == 401
+
+
+def test_get_profile_authenticated(logged_in_client):
+    res = logged_in_client.get('/api/auth/profile')
+    assert res.status_code == 200
+    assert 'email' in res.get_json()['user']
+
+
+def test_change_password(logged_in_client):
+    res = logged_in_client.post('/api/auth/change_password', json={
+        'current_password': 'StrongPass123!',
+        'new_password': 'NewPass456!'
+    })
+    assert res.status_code == 200
