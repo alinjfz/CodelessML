@@ -19,6 +19,7 @@ Plan.md
 backend/setup.txt
 backend/todo.txt
 backend/migrations/
+backend/app/suggest/test/
 
 # ── Database files
 backend/**/*.sqlite
