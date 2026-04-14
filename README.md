@@ -18,7 +18,7 @@
 ## What It Does
 
 1. **Upload** your CSV dataset (up to 16 MB)
-2. **Analyze** — get instant column types, missing values, correlations, and sample rows
+2. **Analyse** — get instant column types, missing values, correlations, and sample rows
 3. **Get a recommendation** — the suggestion engine scores 4 algorithms against 7 dataset characteristics and returns a ranked recommendation
 4. **Configure** — select features, target column, hyperparameters, and train/test split
 5. **Train** — one click triggers scikit-learn training and computes accuracy, precision, recall, F1, and confusion matrix
@@ -226,7 +226,7 @@ Test coverage:
 | ------ | ----------- | ---------------------- | ---- |
 | GET    | `/`         | List uploaded datasets | Yes  |
 | POST   | `/upload`   | Upload CSV (max 16 MB) | Yes  |
-| POST   | `/analysis` | Analyze dataset        | Yes  |
+| POST   | `/analysis` | Analyse dataset        | Yes  |
 
 ### Training — `/api/train`
 
