@@ -1,6 +1,6 @@
 # CodelessML
 
-**CodelessML** is a full-stack no-code machine learning platform. Upload a CSV dataset, pick your features, and train a production-ready ML classifier — no Python required.
+**CodelessML** is a full-stack no-code machine learning platform. Upload a CSV dataset, pick your features, and train a production-ready ML classifier all built in and no code required.
 
 ![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
 ![Flask](https://img.shields.io/badge/Flask-2.0+-green.svg)
