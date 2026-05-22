@@ -9,7 +9,7 @@
 ![pytest](https://img.shields.io/badge/tested%20with-pytest-yellowgreen.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-> Train a machine learning classifier on your own CSV — no Python required.
+Train a machine learning classifier on your own CSV, no Python required.
 
 <!-- Add screenshot or GIF here -->
 
